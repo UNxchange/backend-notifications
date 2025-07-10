@@ -12,3 +12,13 @@ class UserOut(BaseModel):
 
     class Config:
         from_attributes = True # Permite que Pydantic lea datos desde modelos ORM
+
+# Schema para notificación de usuario creado
+class UserCreatedNotification(BaseModel):
+    name: str
+    email: EmailStr
+    
+# Schema para respuesta de notificación
+class NotificationResponse(BaseModel):
+    success: bool
+    message: str

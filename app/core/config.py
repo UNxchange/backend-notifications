@@ -6,7 +6,11 @@ class Settings(BaseSettings):
     SECRET_KEY: str
     EMAIL_ADDRESS: str
     EMAIL_PASSWORD: str
-
+    ALGORITHM: str = "HS256"
+    
+    # Configuración adicional
+    LOG_LEVEL: str = "INFO"
+    
     class Config:
         env_file = ".env"
 

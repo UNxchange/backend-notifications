@@ -12,3 +12,7 @@ python-dotenv
 python-multipart
 punq
 passlib[bcrypt]
+pytest
+pytest-asyncio
+httpx
+requests
