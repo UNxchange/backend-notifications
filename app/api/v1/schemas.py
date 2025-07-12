@@ -17,6 +17,16 @@ class UserOut(BaseModel):
 class UserCreatedNotification(BaseModel):
     name: str
     email: EmailStr
+
+# Schema para notificación de convocatoria elegida
+class ConvocatoriaElegidaNotification(BaseModel):
+    user_name: str
+    user_email: EmailStr
+    convocatoria_titulo: str
+    convocatoria_descripcion: str
+    universidad_destino: str
+    fecha_inicio: str
+    fecha_fin: str
     
 # Schema para respuesta de notificación
 class NotificationResponse(BaseModel):
