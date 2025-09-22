@@ -197,3 +197,4 @@ cython_debug/
 
 
 backend_auth.db
+init_db.py
