@@ -10,3 +10,9 @@ def get_all_users(db: Session):
     Retorna todos los usuarios en la base de datos.
     """
     return db.query(User).all()
+
+def get_user_by_id(db: Session, user_id: int):
+    """
+    Retorna un usuario por su ID.
+    """
+    return db.query(User).filter(User.id == user_id).first()
