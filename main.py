@@ -25,8 +25,13 @@ app.include_router(graphql_router, prefix="/graphql", tags=["GraphQL"])
 # Configuración CORS para permitir solicitudes desde el frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=[
+        "http://localhost",
+        "http://localhost:80",
+        "http://localhost:3000",
+        "http://localhost:8080",
+    ],  # Orígenes específicos en lugar de "*"
+    allow_credentials=True,  # Permitir credenciales
     allow_methods=["*"],
     allow_headers=["*"],
 )
