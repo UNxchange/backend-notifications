@@ -13,8 +13,8 @@ from app.api.graphql.resolvers.notification_resolver import NotificationResolver
 from app.db.model import Notification
 
 class Context(BaseContext):
-    def __init__(self):
-        self.db = next(get_db())
+    def __init__(self, db: Session):
+        self.db = db
 
 @strawberry.type
 class Query:
