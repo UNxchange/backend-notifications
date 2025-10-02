@@ -20,7 +20,7 @@ app.middleware("http")(prometheus_middleware)
 
 # Incluir routers
 app.include_router(notification.router, prefix="/api/v1/notification", tags=["Notification"])
-app.include_router(graphql_router, prefix="/graphql", tags=["GraphQL"])
+app.include_router(graphql_router, prefix="/api/v1/notification/graphql", tags=["GraphQL"])
 
 # Configuración CORS para permitir solicitudes desde el frontend
 app.add_middleware(
@@ -41,8 +41,8 @@ def read_root():
         "version": "1.1.0",
         "endpoints": {
             "rest_api": "/api/v1/notification/",
-            "graphql": "/graphql",
-            "graphql_playground": "/graphql (GET)",
+            "graphql": "/api/v1/notification/graphql",
+            "graphql_playground": "/api/v1/notification/graphql (GET)",
             "docs": "/docs",
             "metrics": "/metrics"
         }
