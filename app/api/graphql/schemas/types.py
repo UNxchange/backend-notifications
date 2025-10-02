@@ -1,5 +1,6 @@
 # app/api/graphql/schemas/types.py
 import strawberry
+from strawberry.scalars import JSON
 from enum import Enum
 from typing import List, Optional
 from datetime import datetime
@@ -16,6 +17,27 @@ class User:
     name: str
     email: str
     role: UserRole
+
+@strawberry.type
+class Notification:
+    id: int
+    user_id: int
+    type: str
+    title: str
+    message: str
+    is_read: bool
+    created_at: str
+    read_at: Optional[str] = None
+    metadata: Optional[JSON] = None
+    user: Optional[User] = None
+
+@strawberry.input
+class NotificationInput:
+    user_id: int
+    type: str
+    title: str
+    message: str
+    metadata: Optional[JSON] = None
 
 @strawberry.type
 class NotificationResult:
@@ -76,10 +98,11 @@ class BulkEmailInput:
 
 @strawberry.input
 class UserInput:
+    id: Optional[int] = None  # ID opcional del usuario (si ya fue creado)
     name: str
     email: str
     role: UserRole
-    password: str
+    password: Optional[str] = None  # Password opcional (no necesario para notificaciones)
 
 @strawberry.type
 class UserWithNotification:
