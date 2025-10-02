@@ -194,3 +194,7 @@ cython_debug/
 .cursorindexingignore
 
 .vscode
+
+
+backend_auth.db
+init_db.py
