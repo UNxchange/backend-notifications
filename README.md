@@ -4,6 +4,7 @@ Este microservicio maneja el envío de notificaciones por correo electrónico pa
 
 ## 🚀 Funcionalidades
 
+
 - Envío de correos de confirmación cuando se crea un usuario nuevo
 - Envío de correos de confirmación cuando un usuario elige una convocatoria
 - Envío de correos masivos a usuarios registrados con filtros avanzados
