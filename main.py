@@ -35,10 +35,12 @@ app.add_middleware(
         "http://localhost:80",
         "http://localhost:3000",
         "http://localhost:8080",
+        "http://localhost:8001",
     ],  # Orígenes específicos en lugar de "*"
     allow_credentials=True,  # Permitir credenciales
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 
