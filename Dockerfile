@@ -32,6 +32,7 @@ RUN pip install --no-cache-dir python-jose==3.3.0 passlib==1.7.4 python-dotenv==
 RUN pip install --no-cache-dir punq==0.6.2 bcrypt==4.1.2 prometheus_client
 RUN pip install --no-cache-dir pytest==7.4.4 pytest-asyncio==0.21.1 httpx==0.25.2 requests==2.31.0
 RUN pip install --no-cache-dir graphql-core>=3.2.3
+RUN pip install --no-cache-dir pika==1.3.2
 
 # Copiar el código de la aplicación
 COPY . .

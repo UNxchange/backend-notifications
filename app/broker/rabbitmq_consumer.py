@@ -14,7 +14,7 @@ import os
 import time
 
 # Importar funciones de notificación
-from app.core.email import send_email
+from app.core.email import enviar_email
 from app.db.session import SessionLocal
 from app.db.model import User as NotificationUser
 from sqlalchemy.orm import Session
@@ -142,16 +142,16 @@ class MessageConsumer:
             </html>
             """
             
-            success = send_email(
-                to_email=user_email,
-                subject=subject,
-                body=body
-            )
-            
-            if success:
+            try:
+                enviar_email(
+                    destinatario=user_email,
+                    asunto=subject,
+                    cuerpo=f"Bienvenido {user_name} a UnxChange",
+                    html_content=body
+                )
                 logger.info(f"✅ Correo de bienvenida enviado a {user_email}")
-            else:
-                logger.error(f"❌ No se pudo enviar correo de bienvenida a {user_email}")
+            except Exception as email_error:
+                logger.error(f"❌ Error enviando correo a {user_email}: {email_error}")
                 
         except Exception as e:
             logger.error(f"❌ Error procesando usuario creado: {e}")
