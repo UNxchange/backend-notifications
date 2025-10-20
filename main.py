@@ -7,11 +7,16 @@ from app.api.graphql.router import graphql_router
 #metrics
 from app.metrics.prometheus import prometheus_middleware, prometheus_metrics
 
+# Importar el consumidor de RabbitMQ
+from app.broker import start_consumer
+import logging
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="Notification Service",
-    version="1.1.0",
-    description="Microservicio de notificaciones con API REST y GraphQL"
+    version="1.2.0",
+    description="Microservicio de notificaciones con API REST, GraphQL y RabbitMQ Consumer"
 )
 
 
@@ -37,13 +42,26 @@ app.add_middleware(
 )
 
 
+# Evento de inicio de la aplicación
+@app.on_event("startup")
+async def startup_event():
+    """Inicia el consumidor de RabbitMQ al arrancar la aplicación"""
+    try:
+        logger.info("🚀 Iniciando consumidor de RabbitMQ...")
+        start_consumer()
+        logger.info("✅ Consumidor de RabbitMQ iniciado exitosamente")
+    except Exception as e:
+        logger.error(f"❌ Error iniciando consumidor de RabbitMQ: {e}")
+
+
 # Endpoint de bienvenida o de health check
 @app.get("/", tags=["Root"])
 def read_root():
     return {
         "status": "ok", 
         "service": "unxchange-notification-service",
-        "version": "1.1.0",
+        "version": "1.2.0",
+        "features": ["REST API", "GraphQL", "RabbitMQ Consumer"],
         "endpoints": {
             "rest_api": "/api/v1/notification/",
             "graphql": "/api/v1/notification/graphql",
